@@ -14,9 +14,6 @@ p{
 label{
     font-family: 'Roboto', sans-serif;
 }
-.input-serviço{
-    display: flex;
-}
 .input-styles{
     display: flex;
     align-items: center;
@@ -51,12 +48,11 @@ textarea{
 }
 
 body{
-    background-color: #999;
+    background-color: #8498EB;
 }
 
 .montar_styles{
     margin:0;
-    font-weight: bold;
 }
 
 .button_styles_montar{
