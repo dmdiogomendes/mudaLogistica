@@ -13,6 +13,7 @@ const loja = () => {
     const [number_of_articles, setNumber_of_articles] = useState(1)
     const [entrega, setEntrega] = useState(false)
     const [montagem, setMontagem] = useState(false);
+    const [obser, setObser] = useState();
 
     const submit_values = (e) => {
         e.preventDefault();
@@ -39,7 +40,7 @@ const loja = () => {
     }
 
   return (
-    <div style={{display: 'flex'}}>
+    <div style={{display: 'flex', padding: '10px'}}>
         <div>
             <div>
                 <p><Link href="/loja">Loja</Link></p>
@@ -132,7 +133,7 @@ const loja = () => {
                         </div>
                         <div>
                             <h2>Observações:</h2>
-                            <textarea name="postContent" rows={6} cols={60} />
+                            <textarea onChange={(e) => setObser(e.target.value)} name="postContent" rows={6} cols={60} />
                         </div>
                         <button onClick={() => alert(nome)}>Submit</button>
                     </form>
@@ -141,14 +142,10 @@ const loja = () => {
         </div>
         <div style={{display: 'flex'}}>
             <div>
-                <h1>Info Final</h1>
-                <p>{nome}</p>
-                <p>{morada}</p>
-                <p>{zip}</p>
-                <p>{numero}</p>
-                <p>{number_of_articles}</p>
-                <p>{entrega}</p>
-                <p>{montagem}</p>
+                <h1>Marcações</h1>
+                {/* link que irá para as informações */}
+                <p><Link href="/single_delivery">NOME - Delivery</Link></p>
+                <p>{obser}</p>
             </div>
                 {
                     artigo.map((artigos, index) => (
