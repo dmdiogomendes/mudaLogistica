@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styles from './transportes.css'
+import styles from './transportes.scss'
 import React from 'react'
 
 const transportes = () => {
@@ -11,20 +11,14 @@ const transportes = () => {
               <p><Link href="/transportes">Entregas</Link></p>
         </div>
         <div>
-          <h2>transportes</h2>
+          <h1>transportes</h1>
         </div>
         <div>
-          <p>Name</p>
-          <p>Street - Zip Code - numero</p>
-          <p>artigos</p>
-          <p>Observações</p>
-        </div>
-        <p>----------------------------</p>
-        <div>
-          <p>Name</p>
-          <p>Street - Zip Code - numero</p>
-          <p>artigos</p>
-          <p>Observações</p>
+          <p>p103 - Gaia</p>
+          <p>p112 - Braga</p>
+          <p>p113 - Braga Nova Arcada</p>
+          <p>p114 - Matosinhos</p>
+          <p>p115 - Guimarães</p>
         </div>
       </div>
     </div>

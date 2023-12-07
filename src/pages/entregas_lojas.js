@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './single_delivery.scss';
+import styles from './entregas_lojas.scss';
 
 const single_delivery = () => {
     return(
         <div>
-            <div className='single_delivery'>
-                <h1>Single Delivery</h1>
+            <div className='lojas_delivery'>
+                <h1>entrega loja p115</h1>
             </div>
         </div>
     )

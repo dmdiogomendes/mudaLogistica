@@ -1,23 +1,37 @@
 import React, { useState } from 'react'
-import styles from './loja.css'
+import styles from './loja.scss'
 import Link from 'next/link'
 
 const loja = () => {
 
-
     const [nome, setNome] = useState()
     const [morada, setMorada] = useState()
-    const [zip,setZip] = useState()
+    const [zip_code,setZip_code] = useState()
     const [numero, setNumero] = useState()
-    const [artigo, setArtigo] = useState([])
-    const [number_of_articles, setNumber_of_articles] = useState(1)
+    const [data, setData] = useState()
+    const [artigos, setArtigos] = useState([])
+    const [numero_of_articles, setNumero_of_articles] = useState(1)
     const [entrega, setEntrega] = useState(false)
     const [montagem, setMontagem] = useState(false);
-    const [obser, setObser] = useState();
+    const [observation, setObservation] = useState();
 
-    const submit_values = (e) => {
+    const submit_values = async(e) => {
         e.preventDefault();
-        console.log(e)
+
+        try{
+            const repsonse = await fetch('http://localhost:8080/api/delivery', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                //artigo
+                body: JSON.stringify({nome, morada, zip_code, numero, data, numero_of_articles, entrega, montagem, artigos, observation}),
+            })
+            .then(response => response.json())
+
+        }catch(error){
+            console.error('Error during login: ', error);
+        }
     }
 
     const handleCheckboxChange_1 = () => {
@@ -30,28 +44,28 @@ const loja = () => {
 
     const handleNumberOfArticles = (event) => {
         const inputvalue = event.target.value;
-        setNumber_of_articles(inputvalue)
+        setNumero_of_articles(inputvalue)
     }
 
     const handleArticles = (index, field, value) => {
-        const newFormData = [...artigo];
+        const newFormData = [...artigos];
         newFormData[index] = {... newFormData[index], [field]: value};
-        setArtigo(newFormData)
+        setArtigos(newFormData)
     }
 
   return (
     <div style={{display: 'flex', padding: '10px'}}>
         <div>
-            <div>
-                <p><Link href="/loja">Loja</Link></p>
-                <p><Link href="/transportes">Entregas</Link></p>
-            </div>
             <div> 
-                <div>
-                    <h1>Marcaçoes de entregas</h1>
-                </div>
-                <div>
-                    <form onSubmit={submit_values}>
+                <div className='login_div'>
+                    <form onSubmit={submit_values} className='login'>
+                        <h1>Marcaçoes de entregas P115</h1>
+                        <div>
+                            <label className='input-styles' >
+                                Calendario:
+                            </label>
+                            <input type="date" onChange={(e) => setData(e.target.value)} name="numero_input" size="50"/>
+                        </div>
                         <div>
                             <label className='input-styles' >
                                 Nome:
@@ -68,22 +82,22 @@ const loja = () => {
                             <label className='input-styles' >
                                 Codigo de Postal:
                             </label>
-                            <input type="text" onChange={(e) => setZip(e.target.value)} name="zip_code_input" size="50"/>
+                            <input type="text" onChange={(e) => setZip_code(e.target.value)} name="zip_code_input" size="50"/>
                         </div>
                         <div>
                             <label className='input-styles' >
                                 Numero:
                             </label>
-                            <input type="text" onChange={(e) => setNumero(e.target.value)} name="numero_input" size="50"/>
+                            <input type="text" onChange={(e) => setNumero_of_articles(e.target.value)} name="numero_input" size="50"/>
                         </div>
                         <h2>Serviço:</h2>
-                        <div className='input-serviço'>
+                        <div className='input-servico'>
                             <div>
                                 <>
                                     <label className='input-styles-servico'>
                                         Numero de Artigos:
                                     </label>
-                                    <input step="1" onChange={handleNumberOfArticles} type="number" value={number_of_articles} min="0" max="100"/>
+                                    <input step="1" onChange={handleNumberOfArticles} type="number" value={numero_of_articles} min="0" max="100"/>
                                 </>
                             </div>
                             <div className='input-styles'>
@@ -102,7 +116,7 @@ const loja = () => {
                         <div>
                             <h2>Artigos:</h2>
                             {
-                                [...Array(Number(number_of_articles))].map((_ ,index) => (
+                                [...Array(Number(numero_of_articles))].map((_ ,index) => (
                                     <div key={index}>
                                             <div className='input-styles'>
                                                 <>
@@ -116,7 +130,7 @@ const loja = () => {
                                                     />
                                                 </>
                                                 <>
-                                                    <input placeholder='nome do artigo'  type="text" name="query" size="50"
+                                                    <input placeholder='nome do artigo'  type="text" name="query" size="30"
                                                     onChange={(e) => handleArticles(index, 'nome_do_artigo', e.target.value)}
                                                     />
                                                 </>
@@ -133,22 +147,27 @@ const loja = () => {
                         </div>
                         <div>
                             <h2>Observações:</h2>
-                            <textarea onChange={(e) => setObser(e.target.value)} name="postContent" rows={6} cols={60} />
+                            <textarea onChange={(e) => setObservation(e.target.value)} name="postContent" rows={6} cols={60} />
                         </div>
-                        <button onClick={() => alert(nome)}>Submit</button>
+                        <button>Submit</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div style={{display: 'flex'}}>
+
+        <div className='login'>
             <div>
                 <h1>Marcações</h1>
                 {/* link que irá para as informações */}
                 <p><Link href="/single_delivery">NOME - Delivery</Link></p>
-                <p>{obser}</p>
+                <p>{observation}</p>
+                <div>
+                    <p><Link href="/loja">Loja</Link></p>
+                    <p><Link href="/transportes">Entregas</Link></p>
+                </div>
             </div>
                 {
-                    artigo.map((artigos, index) => (
+                    artigos.map((artigos, index) => (
                         <div key={index}>
                             <p>{artigos.unid}</p>
                             <p>{artigos.ref}</p>

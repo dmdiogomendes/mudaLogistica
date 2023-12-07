@@ -1,0 +1,22 @@
+$greenSeaweed: rgba(2, 128, 144, 1);
+$blueQueen: rgba(69, 105, 144, 1);
+$redFire: rgba(244, 91, 105, 1);
+
+// Fonts
+$fontAsap: 'Asap', sans-serif;
+
+body {
+    background-color: $redFire;
+    font-family: $fontAsap;
+}
+
+.single_delivery{
+    padding: 10px;
+    overflow: hidden;
+    background-color: white;
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    transform:(translate(-0%, -00%));
+    transition:(transform 300ms, box-shadow 300ms);
+    box-shadow: 0px 0px 5px rgba($greenSeaweed, 2);
+}

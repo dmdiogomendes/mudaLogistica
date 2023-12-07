@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './login.css';
+import styles from './login.scss';
 import { useRouter } from 'next/router';
 import { Passero_One } from 'next/font/google';
 
@@ -66,23 +66,15 @@ const login = () => {
     }
 
     return(
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            background: '#8498EB',
-            minHeight: '100vh',
-        }}>
-            <div>
-                <h1>Muda Transportes</h1>
-                <form onSubmit={handlelogin}>
+            <div className="input_containers">
+                <form onSubmit={handlelogin} className='login'>
                     <div style={{ 
                     marginBottom: '10px',
                     display: 'flex',
                     flexDirection: 'column',
                     marginBottom: '10px',
                     }}>
+                        <h1>muda transportes</h1>
                         <div style={{
                             textAlign: 'left', // Align labels to the right
                             marginRight: '10px',
@@ -109,13 +101,12 @@ const login = () => {
                         </div>
                         <input onChange={(e) => setPassword(e.target.value)} type="password"/>
                     </div>
-                    <button onClick={register_login} style={{background:'red'}}>
+                    {/* <button onClick={register_login} style={{background:'red'}}>
                         registo
-                    </button>
+                    </button> */}
                     <button type="submit">Login</button>
                 </form>
             </div>
-        </div>
     )
 }
 
