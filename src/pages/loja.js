@@ -154,28 +154,116 @@ const loja = () => {
                 </div>
             </div>
         </div>
-
         <div className='login'>
             <div>
                 <h1>Marcações</h1>
-                {/* link que irá para as informações */}
-                <p><Link href="/single_delivery">NOME - Delivery</Link></p>
-                <p>{observation}</p>
-                <div>
-                    <p><Link href="/loja">Loja</Link></p>
-                    <p><Link href="/transportes">Entregas</Link></p>
+                <div style={{display: 'flex'}}>
+                    <div style={{paddingRight: '15px'}}>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <Link href="/single_delivery" style={{color: 'black'}}>
+                            another place
+                        </Link>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    {/* <div style={{paddingRight: '15px'}}>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                    </div>
+                    <div style={{paddingRight: '15px'}}>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div>
+                    <div>
+                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                        <p>Diogo Antunes</p>
+                        <p>Alexandre Mendes</p>
+                        <p>Alberto Costa</p>
+                        <p>Constantino Veiga</p>
+                        <p>Perfeito Reis</p>
+                        <p>Final Set</p>
+                        <p>Paula Mendes</p>
+                        <p>Lobo Mendes</p>
+                        <p>Alberto Caeiro</p>
+                    </div> */}
                 </div>
             </div>
-                {
-                    artigos.map((artigos, index) => (
-                        <div key={index}>
-                            <p>{artigos.unid}</p>
-                            <p>{artigos.ref}</p>
-                            <p>{artigos.nome_do_artigo}</p>
-                            <p>{artigos.montar}</p>
-                        </div>
-                    ))
-                }
         </div>
     </div>
   )

@@ -31,14 +31,12 @@ label{
 
 .login {
     padding: 10px;
-    overflow: hidden;
     background-color: white;
     padding: 40px 30px 30px 30px;
     border-radius: 10px;
     transform:(translate(-0%, -00%));
     transition:(transform 300ms, box-shadow 300ms);
     box-shadow: 0px 0px 5px rgba($greenSeaweed, 2);
-    width: 100%;
     
     > input {
       font-family: $fontAsap;
@@ -76,10 +74,9 @@ label{
 a {
   text-decoration: none;
   color: rgba(white, 0.6);
-  position: absolute;
   right: 10px;
   bottom: 10px;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .input_containers{

@@ -7,10 +7,6 @@ const transportes = () => {
     <div className='transportes_body'>
       <div>
         <div>
-              <p><Link href="/loja">Loja</Link></p>
-              <p><Link href="/transportes">Entregas</Link></p>
-        </div>
-        <div>
           <h1>transportes</h1>
         </div>
         <div>
