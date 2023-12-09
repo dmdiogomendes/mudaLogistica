@@ -9,15 +9,14 @@ const loja = () => {
     const [zip_code,setZip_code] = useState()
     const [numero, setNumero] = useState()
     const [data, setData] = useState()
-    const [artigos, setArtigos] = useState([])
     const [numero_of_articles, setNumero_of_articles] = useState(1)
     const [entrega, setEntrega] = useState(false)
     const [montagem, setMontagem] = useState(false);
-    const [observation, setObservation] = useState();
+    const [artigos, setArtigos] = useState([])
+    const [observation, setObservation] = useState('');
 
     const submit_values = async(e) => {
         e.preventDefault();
-
         try{
             const repsonse = await fetch('http://localhost:8080/api/delivery', {
                 method: 'POST',
@@ -25,7 +24,18 @@ const loja = () => {
                     'Content-Type': 'application/json'
                 },
                 //artigo
-                body: JSON.stringify({nome, morada, zip_code, numero, data, numero_of_articles, entrega, montagem, artigos, observation}),
+                body: JSON.stringify({
+                    nome, 
+                    morada, 
+                    zip_code, 
+                    numero, 
+                    data, 
+                    numero_of_articles, 
+                    entrega, 
+                    montagem, 
+                    artigos, 
+                    observation
+                }),
             })
             .then(response => response.json())
 
@@ -88,7 +98,7 @@ const loja = () => {
                             <label className='input-styles' >
                                 Numero:
                             </label>
-                            <input type="text" onChange={(e) => setNumero_of_articles(e.target.value)} name="numero_input" size="50"/>
+                            <input type="text" onChange={(e) => setNumero(e.target.value)} name="numero_input" size="50"/>
                         </div>
                         <h2>Serviço:</h2>
                         <div className='input-servico'>
@@ -145,6 +155,9 @@ const loja = () => {
                                 ))
                             }
                         </div>
+                        <button onClick={() => console.log(artigos)}>
+                            HERE HERE HERE
+                        </button>
                         <div>
                             <h2>Observações:</h2>
                             <textarea onChange={(e) => setObservation(e.target.value)} name="postContent" rows={6} cols={60} />
