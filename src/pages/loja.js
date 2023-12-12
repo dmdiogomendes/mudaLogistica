@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './loja.scss'
 import Link from 'next/link'
+import { getUsernameFromLocalStorage } from './utilis/localStorage'
 
 const loja = () => {
 
+    const [username, setUsername] = useState('');
     const [nome, setNome] = useState()
     const [morada, setMorada] = useState()
     const [zip_code,setZip_code] = useState()
@@ -16,14 +18,13 @@ const loja = () => {
     const [observation, setObservation] = useState('');
 
     const submit_values = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         try{
-            const repsonse = await fetch('http://localhost:8080/api/delivery', {
+            const repsonse = fetch('/api/delivery', {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
                 },
-                //artigo
                 body: JSON.stringify({
                     nome, 
                     morada, 
@@ -43,6 +44,14 @@ const loja = () => {
             console.error('Error during login: ', error);
         }
     }
+
+    useEffect(() => {
+
+        const storedUsername = getUsernameFromLocalStorage();
+            if(storedUsername){
+                setUsername(storedUsername)
+            }
+    },[]);
 
     const handleCheckboxChange_1 = () => {
         setEntrega(!entrega); // Toggle the checkbox state
@@ -69,7 +78,7 @@ const loja = () => {
             <div> 
                 <div className='login_div'>
                     <form onSubmit={submit_values} className='login'>
-                        <h1>Marcaçoes de entregas P115</h1>
+                        <h1>Marcaçoes de entregas {username}</h1>
                         <div>
                             <label className='input-styles' >
                                 Calendario:
