@@ -18,31 +18,32 @@ const loja = () => {
     const [observation, setObservation] = useState('');
 
     const submit_values = async(e) => {
-        // e.preventDefault();
-        try{
-            const repsonse = fetch('/api/delivery', {
-                method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    nome, 
-                    morada, 
-                    zip_code, 
-                    numero, 
-                    data, 
-                    numero_of_articles, 
-                    entrega, 
-                    montagem, 
-                    artigos, 
-                    observation
-                }),
-            })
-            .then(response => response.json())
-
-        }catch(error){
-            console.error('Error during login: ', error);
-        }
+        e.preventDefault();
+            try{
+                const repsonse = await fetch('http://localhost:8080/api/delivery', {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    //artigo
+                    body: JSON.stringify({
+                        username,
+                        nome, 
+                        morada, 
+                        zip_code, 
+                        numero, 
+                        data, 
+                        numero_of_articles, 
+                        entrega, 
+                        montagem, 
+                        artigos, 
+                        observation
+                    }),
+                })
+                .then(response => response.json())
+            }catch(error){
+                console.error('Error during login: ', error);
+            }
     }
 
     useEffect(() => {
