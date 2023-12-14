@@ -37,7 +37,6 @@ label{
     transform:(translate(-0%, -00%));
     transition:(transform 300ms, box-shadow 300ms);
     box-shadow: 0px 0px 5px rgba($greenSeaweed, 2);
-    
     > input {
       font-family: $fontAsap;
       display: block;
@@ -69,6 +68,17 @@ label{
         background-color: darken($redFire, 5%);
       }
     }
+}
+
+.parent-container {
+    display: flex;
+}
+
+.marcacoes_layout{
+    padding: 10px;
+    background-color: white;
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
 }
 
 a {

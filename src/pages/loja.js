@@ -74,11 +74,10 @@ const loja = () => {
     }
 
   return (
-    <div style={{display: 'flex', padding: '10px'}}>
-        <div>
+    <div className='parent-container'>
             <div> 
-                <div className='login_div'>
-                    <form onSubmit={submit_values} className='login'>
+                <div className='marcacoes_layout'>
+                    <form onSubmit={submit_values}>
                         <h1>Marcaçoes de entregas {username}</h1>
                         <div>
                             <label className='input-styles' >
@@ -165,9 +164,6 @@ const loja = () => {
                                 ))
                             }
                         </div>
-                        <button onClick={() => console.log(artigos)}>
-                            HERE HERE HERE
-                        </button>
                         <div>
                             <h2>Observações:</h2>
                             <textarea onChange={(e) => setObservation(e.target.value)} name="postContent" rows={6} cols={60} />
@@ -175,120 +171,57 @@ const loja = () => {
                         <button>Submit</button>
                     </form>
                 </div>
-            </div>
         </div>
-        <div className='login'>
-            <div>
-                <h1>Marcações</h1>
-                <div style={{display: 'flex'}}>
-                    <div style={{paddingRight: '15px'}}>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <Link href="/single_delivery" style={{color: 'black'}}>
-                            another place
-                        </Link>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
+            <div className='parent-container'>
+                <div className='marcacoes_layout'>
+                    <h1>Marcações</h1>
+                    <div style={{display: 'flex'}}>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
+                        <div style={{paddingRight: '15px'}}>
+                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
+                            <Link href="/single_delivery" style={{color: 'black'}}>
+                                Here
+                            </Link>
+                        </div>
                     </div>
-                    {/* <div style={{paddingRight: '15px'}}>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                    </div>
-                    <div style={{paddingRight: '15px'}}>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div>
-                    <div>
-                        <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                        <p>Diogo Antunes</p>
-                        <p>Alexandre Mendes</p>
-                        <p>Alberto Costa</p>
-                        <p>Constantino Veiga</p>
-                        <p>Perfeito Reis</p>
-                        <p>Final Set</p>
-                        <p>Paula Mendes</p>
-                        <p>Lobo Mendes</p>
-                        <p>Alberto Caeiro</p>
-                    </div> */}
                 </div>
             </div>
         </div>
-    </div>
   )
 }
 
