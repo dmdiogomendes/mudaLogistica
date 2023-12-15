@@ -129,6 +129,23 @@ textarea{
     border: 2px solid black;
     border-radius: 4px;
 }
+
+.data-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding-right: 15px;
+}
+
+.date-column {
+    border: 1px solid #ccc; /* Optional: for better visibility of columns */
+    padding: 10px;
+}
+
+.name-item {
+    margin-bottom: 5px; /* Space between names */
+}
+
 .montar_styles{
     margin:0;
 }
@@ -136,4 +153,3 @@ textarea{
 .button_styles_montar{
     padding: 7.5px;
 }
-

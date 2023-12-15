@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './loja.scss'
 import Link from 'next/link'
 import { getUsernameFromLocalStorage } from './utilis/localStorage'
+import axios from 'axios'
 
 const loja = () => {
 
@@ -16,6 +17,10 @@ const loja = () => {
     const [montagem, setMontagem] = useState(false);
     const [artigos, setArtigos] = useState([])
     const [observation, setObservation] = useState('');
+
+    const [data_entregas, setData_entregas] = useState([]);
+    const [nome_entregas, setNome_entregas] = useState([]);
+    const [groupedData, setGroupedData] = useState({});
 
     const submit_values = async(e) => {
         e.preventDefault();
@@ -51,8 +56,39 @@ const loja = () => {
         const storedUsername = getUsernameFromLocalStorage();
             if(storedUsername){
                 setUsername(storedUsername)
+                setNome_entregas(nome_entregas)
             }
+
+        axios.get('http://localhost:8080/api/transportes',{
+            params:{
+                storedUsername,
+            }
+        })
+            .then(response => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const sortedData = response.data.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+                const futureData = sortedData.filter(item => new Date(item.data) >= today);
+
+                const grouped = futureData.reduce((acc, item) => {
+                const date = new Date(item.data);
+                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        
+                if (!acc[formattedDate]) {
+                    acc[formattedDate] = [];
+                }
+                acc[formattedDate].push(item.nome);
+                return acc;
+                }, {});
+                setGroupedData(grouped);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
     },[]);
+    
 
     const handleCheckboxChange_1 = () => {
         setEntrega(!entrega); // Toggle the checkbox state
@@ -72,6 +108,11 @@ const loja = () => {
         newFormData[index] = {... newFormData[index], [field]: value};
         setArtigos(newFormData)
     }
+
+    const formatDate = dateString => {
+        const date = new Date(dateString);
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    };
 
   return (
     <div className='parent-container'>
@@ -176,47 +217,20 @@ const loja = () => {
                 <div className='marcacoes_layout'>
                     <h1>Marcações</h1>
                     <div style={{display: 'flex'}}>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
-                        </div>
-                        <div style={{paddingRight: '15px'}}>
-                            <p style={{fontWeight: 'bold'}}>23/10/2023</p>
-                            <Link href="/single_delivery" style={{color: 'black'}}>
-                                Here
-                            </Link>
+                        <div className='data-grid'>
+                            {Object.entries(groupedData).map(([date, names]) => (
+                                <div key={date} style={{border: '1px solid black'}}>
+                                <strong>{date}</strong>
+                                {names.map((name, index) => (
+                                    // <Link href="/single_delivery" style={{color: 'black'}}>
+                                        
+                                    // </Link>
+                                    <div key={index}>
+                                        <Link href="/single_delivery" style={{color: 'black'}}>{name}</Link>
+                                    </div>
+                                ))}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
