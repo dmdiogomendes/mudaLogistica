@@ -21,11 +21,12 @@ const loja = () => {
     const [data_entregas, setData_entregas] = useState([]);
     const [nome_entregas, setNome_entregas] = useState([]);
     const [groupedData, setGroupedData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     const submit_values = async(e) => {
         e.preventDefault();
             try{
-                const repsonse = await fetch('http://localhost:8080/api/delivery', {
+                const response = await fetch('http://localhost:8080/api/delivery', {
                     method: 'POST',
                     headers:{
                         'Content-Type': 'application/json'
@@ -45,7 +46,22 @@ const loja = () => {
                         observation
                     }),
                 })
-                .then(response => response.json())
+                const responseData = await response.json();
+                if (response.ok) {
+                    setNome('');
+                    setMorada('');
+                    setZip_code('');
+                    setNumero('');
+                    setData('');
+                    setNumero_of_articles(1); // Assuming '1' is your initial state
+                    setEntrega(false);
+                    setMontagem(false);
+                    setArtigos([]); // Assuming an empty array is your initial state
+                    setObservation('');
+                } else {
+                    // Handle errors based on the response
+                    console.error('Error in response: ', responseData);
+                }
             }catch(error){
                 console.error('Error during login: ', error);
             }
@@ -83,9 +99,11 @@ const loja = () => {
                 return acc;
                 }, {});
                 setGroupedData(grouped);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error('There was an error!', error);
+                //setIsLoading(false);
             });
     },[]);
     
@@ -113,6 +131,10 @@ const loja = () => {
         const date = new Date(dateString);
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
   return (
     <div className='parent-container'>
@@ -217,21 +239,22 @@ const loja = () => {
                 <div className='marcacoes_layout'>
                     <h1>Marcações</h1>
                     <div style={{display: 'flex'}}>
+                        {groupedData ? 
                         <div className='data-grid'>
-                            {Object.entries(groupedData).map(([date, names]) => (
-                                <div key={date} style={{border: '1px solid black'}}>
+                        {Object.entries(groupedData).map(([date, names]) => (
+                            <div key={date}>
                                 <strong>{date}</strong>
                                 {names.map((name, index) => (
-                                    // <Link href="/single_delivery" style={{color: 'black'}}>
-                                        
-                                    // </Link>
                                     <div key={index}>
-                                        <Link href="/single_delivery" style={{color: 'black'}}>{name}</Link>
+                                            <p>{name}</p>
                                     </div>
                                 ))}
-                                </div>
-                            ))}
+                            </div>
+                        ))}
                         </div>
+                        :
+                        <></>    
+                    }
                     </div>
                 </div>
             </div>

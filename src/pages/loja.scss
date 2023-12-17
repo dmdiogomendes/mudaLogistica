@@ -51,7 +51,6 @@ label{
     
     > button {
       font-family: $fontAsap;
-      cursor: pointer;
       color: #fff;
       font-size: 16px;
       text-transform: uppercase;
@@ -62,7 +61,6 @@ label{
       margin-left: -5px;
       border-radius: 5px;
       background-color: $redFire;
-      transition:(background-color 300ms);
       
       &:hover {
         background-color: darken($redFire, 5%);

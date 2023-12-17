@@ -1,20 +1,45 @@
 import Link from 'next/link'
 import styles from './transportes.scss'
+import { useRouter } from 'next/router';
 import React from 'react'
 
 const transportes = () => {
+
+  const getData = (local) => {
+    alert('Localização ' + local)
+  }
+
   return (
     <div className='transportes_body'>
       <div>
         <div>
           <h1>transportes</h1>
         </div>
-        <div>
-          <p>p103 - Gaia</p>
-          <p>p112 - Braga</p>
-          <p>p113 - Braga Nova Arcada</p>
-          <p>p114 - Matosinhos</p>
-          <p>p115 - Guimarães</p>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <button onClick={() => getData('p103')} className='button_style'>
+            p103 - Gaia
+          </button>
+          <button onClick={() => getData('p105')} className='button_style'>
+            p105 - Famalicão
+          </button>
+          <button onClick={() => getData('p112')} className='button_style'>
+            p112 - Braga
+          </button>
+          <button onClick={() => getData('p113')} className='button_style'>
+            p113 - Nova Arcada
+          </button>
+          <button onClick={() => getData('p114')} className='button_style'>
+            p114 - Matosinhos
+          </button>
+          <button onClick={() => getData('p115')} className='button_style'>
+            p115 - Guimarães
+          </button>
+          <button onClick={() => getData('p116')} className='button_style'>
+            p116 - Barcelos
+          </button>
+          <button onClick={() => getData('p125')} className='button_style'>
+            p125 - Maia
+          </button>
         </div>
       </div>
     </div>
