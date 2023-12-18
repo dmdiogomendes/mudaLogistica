@@ -79,8 +79,9 @@ const loja = () => {
             params:{
                 storedUsername,
             }
-        })
-            .then(response => {
+        }).then(response => {
+                console.log(response)
+                console.log(storedUsername)
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
 

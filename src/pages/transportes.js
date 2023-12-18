@@ -5,8 +5,11 @@ import React from 'react'
 
 const transportes = () => {
 
+  const router = useRouter();
+
   const getData = (local) => {
-    alert('Localização ' + local)
+    alert('Localização ' + local);
+    router.push(`/transportes_dias?location=${local}`);
   }
 
   return (

@@ -10,8 +10,19 @@ body {
     font-family: $fontAsap;
 }
 
+.marcacoes_layout{
+    padding: 10px;
+    background-color: white;
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+}
+
 .main_menu_transportes{
     display: flex;
+}
+
+.main_menu_transportes_single{
+    padding-right: 25px;
 }
 
 .single_day{
