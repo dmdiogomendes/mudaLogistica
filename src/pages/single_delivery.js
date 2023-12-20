@@ -1,43 +1,64 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './single_delivery.scss';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const single_delivery = () => {
 
+    const [deliveryData, setDeliveryData] = useState(null);
     const router = useRouter();
     const { storedUsername, id } = router.query;
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/single_transporte', {
+        if(storedUsername && id) {
+            axios.get('http://localhost:8080/api/single_transporte', {
             params:{
                 storedUsername,
                 id
             }
         }).then(response => {
-            console.log(response)
+            setDeliveryData(response.data);
         })
         .catch(error => {
             console.error('There was an error!', error);
         })
-    },[])
+        }
+    },[storedUsername, id])
+
+    const formattedDate = (x) => {
+        const dateObj = new Date(x);
+        return dateObj.toISOString().split('T')[0]
+    }
+
+    const cleanJson = (y) => {
+        const articles = JSON.parse(y);
+        return articles
+    }
 
     return(
         <div>
             <div className='single_delivery'>
-                <h1>{storedUsername}</h1>
-                <h1>{id}</h1>
-                <h1>Single Delivery</h1>
-                <div>
-                    <p>Data</p>
-                    <p>Nome</p>
-                    <p>Rua Zip-Code</p>
-                    <p>Number</p>
-                    <p>Tipo de serviço: Entregas, Montagem ou ambos</p>
-                    <p>Artigos</p>
-                    <p>Observações</p>
-                </div>
+                {deliveryData && deliveryData.map((value, index) => (
+                    <div key={index}> {/* Always use a key when mapping over an array */}
+                        <h1>{formattedDate(value.data)} - {storedUsername}</h1>
+                        <p>{value.nome}</p>
+                        <p>{value.morada} </p>
+                        <p>{value.zip_code}</p>
+                        <p>{value.numero}</p>
+                        {/* <p>{value.entrega ? '' : 'Entrega'} {value.montagem ? '' : '+ Montagem'}</p> */}
+                        <p>Artigos: 
+                            {cleanJson(value.artigos).map((artigo, artIndex) => (
+                                <div key={artIndex}>
+                                    <p>{artigo.unid}x Ref: {artigo.ref} - {artigo.nome_do_artigo} Montar: {artigo.montar === 'on' ? 'Sim' : 'Não'}</p>
+                                </div>
+                            ))}
+                        </p>
+                        <p>Observações: 
+                           <b> {value.observation}</b> 
+                        </p>
+                    </div>
+                ))}
             </div>
         </div>
     )

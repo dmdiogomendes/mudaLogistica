@@ -35,7 +35,6 @@ const transportes_dias = () => {
                     return acc;
                 }, {});
                 setGroupedData(grouped);
-                console.log(response)
             }).catch(error => {
                 console.error('There was an error!', error);
             })
@@ -60,7 +59,7 @@ const transportes_dias = () => {
                                     <strong>{date}</strong>
                                     {items.map((item, index) => (
                                         <div key={index}>
-                                            <button onClick={() => single_delivery(storedUsername,item.entrega_id)}>
+                                            <button className='button_style' onClick={() => single_delivery(storedUsername,item.entrega_id)}>
                                                 <p>{item.nome}</p>
                                             </button>
                                         </div>
