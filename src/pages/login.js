@@ -40,30 +40,6 @@ const login = () => {
         }
     }
 
-
-    // const register_login = async(e) => {
-    //     e.preventDefault();
-
-    //     try{
-    //         const response = await fetch('http://localhost:8080/api/register', {
-    //             method: 'POST',
-    //             headers:{
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ user, password }),
-    //         });
-
-    //         if(response.ok){
-    //             alert("Registado")
-    //         }else{
-    //             alert("Tenta de novo")
-    //         }
-
-    //     }catch (error){
-    //         console.error('Error during login: ', error);
-    //     }
-    // }
-
     return(
             <div className="input_containers">
                 <form onSubmit={handlelogin} className='login'>
@@ -100,9 +76,6 @@ const login = () => {
                         </div>
                         <input onChange={(e) => setPassword(e.target.value)} type="password"/>
                     </div>
-                    {/* <button onClick={register_login} style={{background:'red'}}>
-                        registo
-                    </button> */}
                     <button type="submit">Login</button>
                 </form>
             </div>

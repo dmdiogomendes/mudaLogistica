@@ -7,10 +7,10 @@ const transportes = () => {
 
   const router = useRouter();
 
-  const getData = (local) => {
-    alert('Localização ' + local);
-    router.push(`/transportes_dias?location=${local}`);
-  }
+  const getData = (storedUsername) => {
+    router.push(`/transportes_dias?storedUsername=${storedUsername}`);
+  }   
+  
 
   return (
     <div className='transportes_body'>
